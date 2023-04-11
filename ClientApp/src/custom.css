@@ -1,0 +1,123 @@
+
+.content {
+    margin: 40px 80px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    align-content: center;
+}
+
+.mr-16 {
+    margin-right: 16px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.header {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #222222;
+    opacity: 0.9;
+}
+
+.lable {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #222222;
+    opacity: 0.6;
+    margin-bottom: 0;
+}
+
+.text-input {
+    border: 1px solid #E4E5E7;
+    border-radius: 7px;
+    padding: 17px 20px 17px 20px;
+}
+
+.select-box {
+    border: 1px solid #E4E5E7;
+    border-radius: 7px;
+    padding: 17px 20px 17px 20px;
+}
+
+.date-input {
+    border: 1px solid #E4E5E7;
+    border-radius: 7px;
+    padding: 17px 20px 17px 20px;
+}
+
+.input-file {
+	position: relative;
+	display: flex;
+}
+.input-file-text {
+    background: #FBFBFB;
+    border: 1px dashed #E4E5E7;   
+	text-align: left;
+	display: block;
+	float: left;
+	box-sizing: border-box;
+	border-radius: 7px 0px 0 7px;
+    padding: 17px 20px 17px 20px;
+}
+.input-file-btn {
+	display: inline-block;
+	cursor: pointer;
+	font-size: 14px;
+	vertical-align: middle;
+	color: rgb(255 255 255);
+	text-align: center;
+	border-radius: 0 7px 7px 0;
+	background-color: #5795FD;
+	line-height: 22px;
+	padding: 19px;
+	box-sizing: border-box;
+	border: none;
+	margin: 0;
+	transition: background-color 0.2s;
+}
+
+.input-file input[type=file]:focus + .input-file-btn {
+	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+ 
+.input-file:hover .input-file-btn {
+	background-color: #90b9ff;;
+}
+
+input[type="checkbox"] {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+.checkbox {
+    display: inline-block;
+    box-sizing: border-box;
+
+    width: 18px;
+    height: 18px;
+
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0.5' y='0.5' width='17' height='17' rx='3.5' stroke='%23E4E5E7'/%3E%3C/svg%3E");;
+    background-size: 100% auto;
+}
+  
+.checkbox--active {
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0.5' y='0.5' width='17' height='17' rx='3.5' stroke='%23E4E5E7'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M4.24645 8.63068L3 9.9027L7.48082 14.3516L15.5923 6.27202L14.3267 5L7.48082 11.8203L4.24645 8.63068Z' fill='%2316BB5B'/%3E%3C/svg%3E%0A");
+    background-size: 100% auto;
+}
