@@ -2,35 +2,26 @@ import * as React from 'react';
 import { ChangeEvent, useRef, useState, useCallback } from 'react';
 import {useDropzone} from 'react-dropzone'
 
-
-
-
-const FileInput : React.FC<{placeholder:string}> = (props) =>{
-    const [file, setFile] = useState<File>();
+const FileInput : React.FC<{placeholder:string, file:File|undefined, onChange:(f:File) =>{} }> = (props) =>{
+    //const [file, setFile] = useState<File>();
     const inputRef = useRef<HTMLInputElement | null>(null);
-
-    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-      if (!e.target.files) {
-        return;
-      }
-      setFile(e.target.files[0]);
-    };
 
     const onDrop = useCallback(acceptedFiles => {
       if(acceptedFiles.length > 0){
-        setFile(acceptedFiles[0]);
+        props.onChange(acceptedFiles[0]);
+        //setFile(acceptedFiles[0]);
       }
     }, [])
     const {getRootProps, getInputProps} = useDropzone({onDrop})
 
     return (
         <div  {...getRootProps()}>
-          <span className='input-file-text' {...getRootProps()}>{file ?
+          <span className='input-file-text' {...getRootProps()}>{props.file ?
             <>
               <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.872869 5.23438L2.11932 3.96236L5.35369 7.15199L12.1996 0.331676L13.4652 1.60369L5.35369 9.68324L0.872869 5.23438Z" fill="#16BB5B"/>
               </svg>
-            {` ${file.name}`}
+            {` ${props.file.name}`}
             </> : props.placeholder}</span>
           <input className='input-file-text' {...getInputProps()} />
           <span className='input-file-btn'>

@@ -1,23 +1,22 @@
 import * as React from 'react';
 import { useState } from 'react';
+
+import FormOfOwnership from './components/FormOfOwnership'
 import IndividualEntrepreneur from './components/IndividualEntrepreneur'
+import LimitedLiabilityCompany from './components/LimitedLiabilityCompany'
+import { useSelector } from 'react-redux';
+import { ApplicationState } from './store';
 import './custom.css'
 
 export default () => {
 
-    const [formOfOwnership, setFormOfOwnership] = useState('IP')
+    const formOfOwnership = useSelector<ApplicationState, string|undefined>(state => state.formOfOwnership?.Form);
 
     return (
         <div className='content'>
-            <h3 className='header'>Форма собственности</h3>
-            <p className='lable'>Вид деятельности*</p>
-            <select className = 'select-box mb-40' 
-                    defaultValue = {formOfOwnership} 
-                    onChange={(e) => setFormOfOwnership(e.target.value)}>
-                <option value={'IP'}>Индивидуальный предприниматель (ИП)</option>
-                <option value={'OOO'}>Общество с ограниченной ответственностью (ООО)</option>
-            </select>
+            {formOfOwnership===undefined ? <FormOfOwnership></FormOfOwnership>: undefined}
             {formOfOwnership==='IP' ? <IndividualEntrepreneur></IndividualEntrepreneur>: undefined}
+            {formOfOwnership==='OOO' ? <LimitedLiabilityCompany></LimitedLiabilityCompany>: undefined}
         </div>
     )
 };
