@@ -1,12 +1,14 @@
 import * as IndividualEntrepreneur from './IndividualEntrepreneur';
 import * as LimitedLiabilityCompany from './LimitedLiabilityCompany';
 import * as FormOfOwnership from './FormOfOwnership';
+import * as BanksForm from './BanksForm';
 
 // The top-level state object
 export interface ApplicationState {
     individualEntrepreneur:IndividualEntrepreneur.IndividualEntrepreneurState | undefined;
     limitedLiabilityCompany:LimitedLiabilityCompany.LimitedLiabilityCompanyState | undefined;
     formOfOwnership:FormOfOwnership.FormOfOwnershipState | undefined;
+    banksForm:BanksForm.BanksFormState | undefined;
 }
 
 // Whenever an action is dispatched, Redux will update each top-level application state property using
@@ -15,7 +17,8 @@ export interface ApplicationState {
 export const reducers = {
     individualEntrepreneur:IndividualEntrepreneur.reducer,
     limitedLiabilityCompany:LimitedLiabilityCompany.reducer,
-    formOfOwnership:FormOfOwnership.reducer
+    formOfOwnership:FormOfOwnership.reducer,
+    banksForm:BanksForm.reducer
 };
 
 // This type can be used as a hint on action creators so that its 'dispatch' and 'getState' params are

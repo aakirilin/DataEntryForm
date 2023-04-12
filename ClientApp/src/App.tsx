@@ -4,6 +4,7 @@ import { useState } from 'react';
 import FormOfOwnership from './components/FormOfOwnership'
 import IndividualEntrepreneur from './components/IndividualEntrepreneur'
 import LimitedLiabilityCompany from './components/LimitedLiabilityCompany'
+import BanksForm from './components/BanksForm';
 import { useSelector } from 'react-redux';
 import { ApplicationState } from './store';
 import './custom.css'
@@ -11,12 +12,15 @@ import './custom.css'
 export default () => {
 
     const formOfOwnership = useSelector<ApplicationState, string|undefined>(state => state.formOfOwnership?.Form);
+    const showBanksForm = useSelector<ApplicationState, boolean|undefined>(state => state.banksForm?.showBanksForm) ?? false;
 
     return (
         <div className='content'>
             {formOfOwnership===undefined ? <FormOfOwnership></FormOfOwnership>: undefined}
-            {formOfOwnership==='IP' ? <IndividualEntrepreneur></IndividualEntrepreneur>: undefined}
-            {formOfOwnership==='OOO' ? <LimitedLiabilityCompany></LimitedLiabilityCompany>: undefined}
+            {formOfOwnership==='IP' && !showBanksForm ? <IndividualEntrepreneur></IndividualEntrepreneur>: undefined}
+            {formOfOwnership==='OOO' && !showBanksForm ? <LimitedLiabilityCompany></LimitedLiabilityCompany>: undefined}
+            {showBanksForm ? <BanksForm></BanksForm>: undefined}
+
         </div>
     )
 };

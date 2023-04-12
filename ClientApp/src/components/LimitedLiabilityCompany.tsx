@@ -3,6 +3,7 @@ import FileInput from './FileInput';
 import { useSelector, useDispatch } from 'react-redux';
 import { ApplicationState } from '../store';
 import { actionCreators } from '../store/LimitedLiabilityCompany';
+import { actionCreators as banksActionCreators } from '../store/BanksForm';
 
 const LimitedLiabilityCompany = () => {
     const dispatch = useDispatch();
@@ -38,6 +39,8 @@ const LimitedLiabilityCompany = () => {
 
     const noContract = useSelector<ApplicationState, boolean|undefined>(state => state.limitedLiabilityCompany?.NoСontract)?? false;
     const setNoСontract = (value:boolean) => dispatch(actionCreators.setNoСontract(value));
+
+    const setShowBanksForm = () => dispatch(banksActionCreators.setShowBanksForm(true));
 
     return (
         <>
@@ -121,7 +124,7 @@ const LimitedLiabilityCompany = () => {
                     Нет договора
                 </label>
             </div>
-            <button className='primary-button'>Далее</button>
+            <button className='primary-button' onClick={setShowBanksForm}>Далее</button>
         </>
     )
 }
