@@ -13,6 +13,8 @@ const LimitedLiabilityCompany = () => {
     const shortName = useSelector<ApplicationState, string|undefined>(state => state.limitedLiabilityCompany?.ShortName);
     const setShortName = (value:string) => dispatch(actionCreators.setShortName(value));
 
+    console.log(shortName);
+
     const dateRegistration = useSelector<ApplicationState, Date|null|undefined>(state => state.limitedLiabilityCompany?.DateRegistration);
     const setDateRegistration = (value:Date|null) => dispatch(actionCreators.setDateRegistration(value));
 
@@ -46,7 +48,7 @@ const LimitedLiabilityCompany = () => {
                     <p><input className='text-input' 
                               placeholder='Наименование полное*' 
                               size={50} 
-                              defaultValue={fullName}
+                              value={fullName}
                               onChange={(e) => setFullName(e.target.value)}></input></p>
                 </div>
                 <div className='mr-16'>
@@ -54,13 +56,13 @@ const LimitedLiabilityCompany = () => {
                     <p><input className='text-input' 
                               size={30} 
                               placeholder='Наименование сокращенное*' 
-                              defaultValue={shortName}
+                              value={shortName}
                               onChange={(e) => setShortName(e.target.value)}></input></p>
                 </div>
                 <div className='mr-16'>
                     <p className='lable'>Дата регистрации*</p>
                     <p><input type='date'
-                              defaultValue={`${dateRegistration}`}
+                              value={`${dateRegistration?.toISOString()?.split('T')[0]}`}
                               onChange={e => setDateRegistration(e.target.valueAsDate)}
                               className='date-input' 
                               placeholder='дд.мм.гггг'></input></p>
@@ -88,7 +90,7 @@ const LimitedLiabilityCompany = () => {
                               size={15} 
                               maxLength={15} 
                               placeholder='ххххххххххххххх'
-                              defaultValue={ogrn}
+                              value={ogrn}
                               onChange={e => setOGRN(e.target.value)}></input></p>
                 </div>
                 <div>

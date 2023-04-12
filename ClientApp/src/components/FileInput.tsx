@@ -1,15 +1,12 @@
 import * as React from 'react';
-import { ChangeEvent, useRef, useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import {useDropzone} from 'react-dropzone'
 
 const FileInput : React.FC<{placeholder:string, file:File|undefined, onChange:(f:File) =>{} }> = (props) =>{
-    //const [file, setFile] = useState<File>();
-    const inputRef = useRef<HTMLInputElement | null>(null);
 
-    const onDrop = useCallback(acceptedFiles => {
+  const onDrop = useCallback(acceptedFiles => {
       if(acceptedFiles.length > 0){
         props.onChange(acceptedFiles[0]);
-        //setFile(acceptedFiles[0]);
       }
     }, [])
     const {getRootProps, getInputProps} = useDropzone({onDrop})

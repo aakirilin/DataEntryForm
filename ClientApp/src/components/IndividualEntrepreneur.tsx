@@ -41,7 +41,7 @@ const IndividualEntrepreneur = () => {
                               size={10} 
                               maxLength={10} 
                               placeholder='хххххххххх' 
-                              defaultValue={inn}
+                              value={inn}
                               onChange={(e) => setINN(e.target.value)}></input></p>
                 </div>
                 <div className='mr-16'>
@@ -56,7 +56,7 @@ const IndividualEntrepreneur = () => {
                               size={15} 
                               maxLength={15} 
                               placeholder='ххххххххххххххх'
-                              defaultValue={ogrnip}
+                              value={ogrnip}
                               onChange={e => setOGRNIP(e.target.value)}></input></p>
                 </div>
                 <div>
@@ -70,7 +70,7 @@ const IndividualEntrepreneur = () => {
                 <div className='mr-16'>
                     <p className='lable'>Дата регистрации*</p>
                     <p><input type='date'
-                              defaultValue={`${dateRegistration}`}
+                              value={`${dateRegistration?.toISOString()?.split('T')[0]}`}
                               onChange={e => setDateRegistration(e.target.valueAsDate)}
                               className='date-input' 
                               placeholder='дд.мм.гггг'></input></p>

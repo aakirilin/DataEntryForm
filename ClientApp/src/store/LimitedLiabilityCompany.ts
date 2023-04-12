@@ -1,4 +1,6 @@
-import { Action, Reducer } from 'redux';
+import { Reducer } from 'redux';
+import axios from 'axios';
+import { AppThunkAction } from './';
 
 
 export interface LimitedLiabilityCompanyState {
@@ -25,13 +27,48 @@ export interface SetOGRNIPFile { type: 'OOO_SetOGRNFile' }
 export interface SetExtractFromTheEGRIPFile { type: 'OOO_SetExtractFromTheEGRIPFile' }
 export interface SetLeaseAgreementOfThePremisesFile { type: 'OOO_SetLeaseAgreementOfThePremisesFile' }
 export interface SetNoСontract { type: 'OOO_SetNoСontract' }
+export interface SetOrganization { type: 'OOO_SetOrganization' }
 
+type KnownAction = SetFullName | 
+                   SetShortName | 
+                   SetDateRegistration | 
+                   SetINN | 
+                   SetINNFile | 
+                   SetOGRN | 
+                   SetOGRNIPFile | 
+                   SetExtractFromTheEGRIPFile | 
+                   SetLeaseAgreementOfThePremisesFile | 
+                   SetNoСontract | 
+                   SetOrganization;
+               
+interface OOOData{
+    dateRegistration: Date|null,
+    fullName:string,
+    ogrn:string,
+    shortName:string
+}
 
 export const actionCreators = {
     setFullName: (value: string) => ({ type: 'OOO_SetFullName', value:value } as SetFullName),
     setShortName: (value: string) => ({ type: 'OOO_SetShortName', value:value } as SetShortName),
     setDateRegistration: (value:Date|null) => ({ type: 'OOO_SetDateRegistration',value:value } as SetDateRegistration),
-    setINN: (value: string) => ({ type: 'OOO_SetINN', value:value } as SetINN),
+    setINN: (value: string) : AppThunkAction<any>  => (dispatch, getState) => {
+        if(value.length === 10) {
+            axios.post('api/OOOSearch', { INN : value}).then(response => {
+                dispatch({ 
+                    type: 'OOO_SetOrganization',
+                    dateRegistration:response.data.dateRegistration,
+                    fullName:response.data.fullName,
+                    ogrn:response.data.ogrn,
+                    shortName:response.data.shortName,
+                    inn:value
+                 })
+            });
+        }
+        else {
+            return { type: 'OOO_SetINN', value:value } as SetINN;
+        }
+    },
     setINNFile: (file:File) => ({ type: 'OOO_SetINNFile', file:file} as SetINNFile),
     setOGRN: (value: string) => ({ type: 'OOO_SetOGRN', value:value } as SetOGRN),
     setOGRNFile: (file:File) => ({ type: 'OOO_SetOGRNFile',file:file } as SetOGRNIPFile),
@@ -68,6 +105,13 @@ export const reducer: Reducer<LimitedLiabilityCompanyState> =
         case 'OOO_SetExtractFromTheEGRIPFile': return { ...state, ExtractFromTheEGRIPFile: action.file};
         case 'OOO_SetLeaseAgreementOfThePremisesFile': return { ...state, LeaseAgreementOfThePremisesFile: action.file};
         case 'OOO_SetNoСontract': return { ...state, NoСontract: action.value};
+        case 'OOO_SetOrganization': return { ...state, 
+            FullName: action.fullName,
+            ShortName: action.shortName,
+            DateRegistration: new Date(action.dateRegistration),
+            INN: action.inn,
+            OGRN: action.ogrn,
+        };
         
         default:
             return state;
