@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators } from '../store/FormOfOwnership';
+import { ApplicationState } from '../store';
 
 const FormsOfOwnership = [
     {lable:'Индивидуальный предприниматель (ИП)', value:'IP'},
@@ -10,11 +11,11 @@ const FormsOfOwnership = [
 
 
 const FormOfOwnership = () => {
-    const [formOfOwnership, setFormOfOwnership] = useState('IP')
     const [showFormsOfOwnership, setShowFormsOfOwnership ] = useState(false);
 
     const dispatch = useDispatch();
-    const next = () => dispatch(actionCreators.setFormOfOwnership(formOfOwnership));
+    const formOfOwnership = useSelector<ApplicationState, string|undefined>(state => state.formOfOwnership?.Form);
+    const setFormOfOwnership = (value:string) => dispatch(actionCreators.setFormOfOwnership(value));
 
     return (
         <>
@@ -33,7 +34,7 @@ const FormOfOwnership = () => {
                         }>{f.lable}</button>)}
                 </div>
             </div>
-            <button className='primary-button' onClick={()=> next()}>Далее</button>
+                        
             </>
     )
 };

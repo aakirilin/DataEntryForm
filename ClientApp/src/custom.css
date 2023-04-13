@@ -45,6 +45,12 @@
     padding: 17px 20px 17px 20px;
 }
 
+.text-input input{
+    border: 0px;
+
+} 
+
+
 .select-box {
     border: 1px solid #E4E5E7;
     border-radius: 7px;
@@ -154,8 +160,56 @@ input[type="checkbox"] {
     cursor: pointer;
     padding: 17px 20px;
     border: 0;
+    display: block;
 }
 
 .primary-button:hover {
     background-color: #90b9ff;
+    display: block;
 }
+
+.secendary-button{
+    background-color: transparent;
+    color: #5795FD;
+    cursor: pointer;
+    border: 0px;
+}
+
+
+.hover{
+    position: relative;
+}
+
+.hover:before {
+    content: attr(data-tooltip);
+    display: none;
+    position: absolute;
+    background-color: #4bb4e93b;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    width: 210px;
+    margin-left: -100px;
+    left: 50%;
+    margin-top: -50px;
+    border: 1px solid #5795FD;
+    border-radius: 7px;
+}
+
+.hover:after {
+    position: absolute;
+    display: none;
+    content: '';
+    border: 8px solid transparent;
+    border-top-color: #5795FD;
+    border-top-style: solid;
+    border-top: solid;
+    margin-top: -26px;
+    color: #5795FD;
+}
+
+.hover:hover:after,
+.hover:hover:before{
+    display: block;
+}
+

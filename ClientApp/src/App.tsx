@@ -16,7 +16,7 @@ export default () => {
 
     return (
         <div className='content'>
-            {formOfOwnership===undefined ? <FormOfOwnership></FormOfOwnership>: undefined}
+            {!showBanksForm ? <FormOfOwnership></FormOfOwnership>: undefined}
             {formOfOwnership==='IP' && !showBanksForm ? <IndividualEntrepreneur></IndividualEntrepreneur>: undefined}
             {formOfOwnership==='OOO' && !showBanksForm ? <LimitedLiabilityCompany></LimitedLiabilityCompany>: undefined}
             {showBanksForm ? <BanksForm></BanksForm>: undefined}

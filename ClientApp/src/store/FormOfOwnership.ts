@@ -15,7 +15,7 @@ export const reducer: Reducer<FormOfOwnershipState> =
 (state: FormOfOwnershipState | undefined, action: any): FormOfOwnershipState => {
     if (state === undefined) {
         return { 
-            Form:undefined
+            Form:'IP'
         };
     }
 
