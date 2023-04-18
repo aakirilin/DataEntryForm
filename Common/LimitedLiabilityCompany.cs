@@ -2,7 +2,8 @@ using System;
 
 namespace DataEntryForm.Common
 {
-    public class LimitedLiabilityCompany{
+    public class LimitedLiabilityCompany
+    {
 
         public Guid INNFileId { get; set; }
         public Guid OGRNIPFileId { get; set; }

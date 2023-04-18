@@ -1,6 +1,7 @@
 import { Reducer } from 'redux';
 import axios from 'axios';
 import { AppThunkAction } from './'
+import { IP, OOO } from '../constants';
 
 export interface Bank {
     BIK:string,
@@ -74,7 +75,7 @@ export const actionCreators = {
         const banks = state.banksForm?.banks;
         const ip = state.individualEntrepreneur;
         const ooo = state.limitedLiabilityCompany;
-        if(formOfOwnership === 'IP' && 
+        if(formOfOwnership === IP && 
            banks && 
            ip && 
            ip.INNFile && 
@@ -101,7 +102,7 @@ export const actionCreators = {
 
             await axios.post('api/IndividualEntrepreneur', reqest);
         }
-        if(formOfOwnership === 'OOO' &&
+        if(formOfOwnership === OOO &&
            banks && 
            ooo && 
            ooo.INNFile && 

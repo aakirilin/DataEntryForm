@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-
+import { IP } from '../constants';
 
 export interface FormOfOwnershipState {
     Form: string|undefined;
@@ -15,7 +15,7 @@ export const reducer: Reducer<FormOfOwnershipState> =
 (state: FormOfOwnershipState | undefined, action: any): FormOfOwnershipState => {
     if (state === undefined) {
         return { 
-            Form:'IP'
+            Form:IP
         };
     }
 

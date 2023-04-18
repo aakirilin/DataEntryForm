@@ -12,9 +12,11 @@ namespace DataEntryForm.Controllers
     {
         private readonly Database database;
 
-        public FileController(Database database){
+        public FileController(Database database)
+        {
             this.database = database;
         }
+        
         [HttpPost]
         public async Task<Guid> OnPost(IFormFile formFile)
         {

@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataEntryForm.Common
 {
-    public class IndividualEntrepreneurEntity {
+    public class IndividualEntrepreneurEntity 
+    {
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id {get; set;}

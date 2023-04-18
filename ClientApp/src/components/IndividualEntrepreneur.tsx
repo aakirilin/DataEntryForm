@@ -34,14 +34,14 @@ const IndividualEntrepreneur = () => {
 
     const setShowBanksForm = () => dispatch(banksActionCreators.setShowBanksForm(true));
 
-    const ceanNextStep = true /* (inn?.length === 10 ?? false) &&
+    const ceanNextStep = (inn?.length === 10 ?? false) &&
                          (innFile) &&
                          (ogrnip?.length === 15 ?? false) &&
                          (ogrnipFile) &&
                          (dateRegistration) &&
                          (extractFromTheEGRIPFile) &&
                          (extractFromTheEGRIPFile) &&
-                         (leaseAgreementOfThePremisesFile || noContract) */
+                         (leaseAgreementOfThePremisesFile || noContract)
 
     return (
         <>

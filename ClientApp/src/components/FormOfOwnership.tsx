@@ -3,11 +3,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators } from '../store/FormOfOwnership';
 import { ApplicationState } from '../store';
-
-const FormsOfOwnership = [
-    {lable:'Индивидуальный предприниматель (ИП)', value:'IP'},
-    {lable:'Общество с ограниченной ответственностью (ООО)', value:'OOO'}
-]
+import { FormsOfOwnership } from '../constants';
 
 
 const FormOfOwnership = () => {

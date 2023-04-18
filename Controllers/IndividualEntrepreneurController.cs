@@ -18,9 +18,11 @@ namespace DataEntryForm.Controllers
     {
         private readonly Database database;
 
-        public IndividualEntrepreneurController(Database database){
+        public IndividualEntrepreneurController(Database database)
+        {
             this.database = database;
         }
+        
         [HttpPost]
         public async Task OnPost(IndividualEntrepreneur individualEntrepreneur)
         {

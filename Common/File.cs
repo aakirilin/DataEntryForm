@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataEntryForm.Common
 {
-    public class File {
+    public class File 
+    {
 
         [Key]
         public Guid Id {get; set;}

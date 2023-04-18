@@ -12,9 +12,11 @@ namespace DataEntryForm.Controllers
     {
         private readonly Database database;
 
-        public LimitedLiabilityCompanyController(Database database){
+        public LimitedLiabilityCompanyController(Database database)
+        {
             this.database = database;
         }
+        
         [HttpPost]
         public async Task OnPost(LimitedLiabilityCompany limitedLiabilityCompany)
         {
