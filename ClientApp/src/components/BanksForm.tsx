@@ -15,12 +15,20 @@ const BanksForm = () =>{
     const setName = (index:number, value:string) => dispatch(actionCreators.setName(index, value));
     const setPaymentAccount = (index:number, value:string) => dispatch(actionCreators.setPaymentAccount(index, value));
     const setCorrespondentAccount = (index:number, value:string) => dispatch(actionCreators.setCorrespondentAccount(index, value));
+    const upload = () => dispatch(actionCreators.upload());
+
+    const ceanNextStep = banks.every(b => 
+        (b.BIK?.length === 9) &&
+        (b.Name?.length ?? 0 > 1) &&
+        (b.PaymentAccount?.length === 20) &&
+        (b.CorrespondentAccount?.length === 20)
+    );
 
     return (
         <>
             <h3 className='header'>Банковские реквизиты</h3>
             {
-                banks.map((b, i) => <>
+                banks.map((b, i) => <div key={i}>
                     <div className='row'>
                         <div className='mr-16'>
                             <p className='lable'>БИК*</p>
@@ -80,7 +88,7 @@ const BanksForm = () =>{
                             </div>
                         </div>
                     </div>
-                </>)
+                </div>)
             }
             <button onClick={addBank} className='secendary-button mb-40'>
             <svg width="25" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,7 +96,9 @@ const BanksForm = () =>{
                 <rect x="2" y="10" width="2" height="14" rx="1" transform="rotate(-90 2 10)" fill="#5795FD"/>
             </svg>
                 Добавить еще один банк</button>
-            <button className='primary-button'>Отправить</button>
+            <button disabled={!ceanNextStep}
+                    className='primary-button ml-auto'
+                    onClick={upload}>Отправить</button>
         </>
     )
 }

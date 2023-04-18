@@ -45,9 +45,12 @@
     padding: 17px 20px 17px 20px;
 }
 
+.text-input:focus{
+    outline:none;
+}
+
 .text-input input{
     border: 0px;
-
 } 
 
 
@@ -168,13 +171,16 @@ input[type="checkbox"] {
     display: block;
 }
 
+.primary-button:disabled{
+    background-color: #888888;
+}
+
 .secendary-button{
     background-color: transparent;
     color: #5795FD;
     cursor: pointer;
     border: 0px;
 }
-
 
 .hover{
     position: relative;
@@ -213,3 +219,6 @@ input[type="checkbox"] {
     display: block;
 }
 
+.ml-auto{
+    margin-left: auto;
+}

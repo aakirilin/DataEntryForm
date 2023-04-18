@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using DataEntryForm.Common;
 
 namespace DataEntryForm
 {
@@ -28,6 +30,10 @@ namespace DataEntryForm
             {
                 configuration.RootPath = "ClientApp/build";
             });
+            services.AddDbContext<Database>(optinons => 
+                optinons.UseInMemoryDatabase("database")
+            );
+            services.AddScoped<Database>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

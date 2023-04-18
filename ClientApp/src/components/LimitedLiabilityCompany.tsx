@@ -14,8 +14,6 @@ const LimitedLiabilityCompany = () => {
     const shortName = useSelector<ApplicationState, string|undefined>(state => state.limitedLiabilityCompany?.ShortName);
     const setShortName = (value:string) => dispatch(actionCreators.setShortName(value));
 
-    console.log(shortName);
-
     const dateRegistration = useSelector<ApplicationState, Date|null|undefined>(state => state.limitedLiabilityCompany?.DateRegistration);
     const setDateRegistration = (value:Date|null) => dispatch(actionCreators.setDateRegistration(value));
 
@@ -41,6 +39,17 @@ const LimitedLiabilityCompany = () => {
     const setNoСontract = (value:boolean) => dispatch(actionCreators.setNoСontract(value));
 
     const setShowBanksForm = () => dispatch(banksActionCreators.setShowBanksForm(true));
+
+    const ceanNextStep = (fullName?.length ?? 0 > 1) &&
+                         (shortName?.length ?? 0 > 1) &&
+                         (inn?.length === 10 ?? false) &&
+                         (innFile) &&
+                         (ogrn?.length === 15 ?? false) &&
+                         (ogrnFile) &&
+                         (dateRegistration) &&
+                         (extractFromTheEGRIPFile) &&
+                         (extractFromTheEGRIPFile) &&
+                         (leaseAgreementOfThePremisesFile || noContract)
 
     return (
         <>
@@ -124,7 +133,9 @@ const LimitedLiabilityCompany = () => {
                     Нет договора
                 </label>
             </div>
-            <button className='primary-button' onClick={setShowBanksForm}>Далее</button>
+            <button className='primary-button ml-auto' 
+                    disabled={!ceanNextStep}
+                    onClick={setShowBanksForm}>Далее</button>
         </>
     )
 }

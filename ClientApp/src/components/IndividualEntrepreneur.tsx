@@ -34,6 +34,15 @@ const IndividualEntrepreneur = () => {
 
     const setShowBanksForm = () => dispatch(banksActionCreators.setShowBanksForm(true));
 
+    const ceanNextStep = true /* (inn?.length === 10 ?? false) &&
+                         (innFile) &&
+                         (ogrnip?.length === 15 ?? false) &&
+                         (ogrnipFile) &&
+                         (dateRegistration) &&
+                         (extractFromTheEGRIPFile) &&
+                         (extractFromTheEGRIPFile) &&
+                         (leaseAgreementOfThePremisesFile || noContract) */
+
     return (
         <>
             <h3 className='header'>Индивидуальный предприниматель (ИП)</h3>
@@ -41,6 +50,7 @@ const IndividualEntrepreneur = () => {
                 <div className='mr-16'>
                     <p className='lable'>ИНН*</p>
                     <p><input className='text-input' 
+                              pattern='\d{10}'
                               size={10} 
                               maxLength={10} 
                               placeholder='хххххххххх' 
@@ -56,6 +66,7 @@ const IndividualEntrepreneur = () => {
                 <div className='mr-16'>
                     <p className='lable'>ОГРНИП*</p>
                     <p><input className='text-input' 
+                              pattern='\d{15}'
                               size={15} 
                               maxLength={15} 
                               placeholder='ххххххххххххххх'
@@ -98,7 +109,9 @@ const IndividualEntrepreneur = () => {
                     Нет договора
                 </label>
             </div>
-            <button className='primary-button' onClick={setShowBanksForm}>Далее</button>
+            <button disabled={!ceanNextStep} 
+                    className='primary-button ml-auto' 
+                    onClick={setShowBanksForm}>Далее</button>
         </>
     )
 }

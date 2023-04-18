@@ -55,7 +55,7 @@ export const actionCreators = {
     setINN: (value: string) : AppThunkAction<any>  => (dispatch, getState) => {
         if(value.length === 10) {
             axios.post('api/OOOSearch', { INN : value}).then(response => {
-                dispatch({ 
+                dispatch({  
                     type: 'OOO_SetOrganization',
                     dateRegistration:response.data.dateRegistration,
                     fullName:response.data.fullName,
@@ -66,7 +66,7 @@ export const actionCreators = {
             });
         }
         else {
-            return { type: 'OOO_SetINN', value:value } as SetINN;
+            dispatch({ type: 'OOO_SetINN', value:value });
         }
     },
     setINNFile: (file:File) => ({ type: 'OOO_SetINNFile', file:file} as SetINNFile),
