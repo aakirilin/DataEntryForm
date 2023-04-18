@@ -7,7 +7,7 @@ import LimitedLiabilityCompany from './components/LimitedLiabilityCompany'
 import BanksForm from './components/BanksForm';
 import { useSelector } from 'react-redux';
 import { ApplicationState } from './store';
-import './custom.css'
+import './style.css'
 
 export default () => {
 

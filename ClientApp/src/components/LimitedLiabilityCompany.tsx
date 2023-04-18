@@ -54,41 +54,46 @@ const LimitedLiabilityCompany = () => {
     return (
         <>
             <h3 className='header'>Общество с ограниченной ответственностью (ООО)</h3>
-            <div className='row'>
+            <div className='row mb-1rem'>
                 <div className='mr-16'>
                     <p className='lable'>Наименование полное*</p>
-                    <p><input className='text-input' 
+                    <input className='text-input' 
                               placeholder='Наименование полное*' 
                               size={50} 
                               value={fullName}
-                              onChange={(e) => setFullName(e.target.value)}></input></p>
+                              onChange={(e) => setFullName(e.target.value)}></input>
                 </div>
                 <div className='mr-16'>
                     <p className='lable'>Наименование сокращенное*</p>
-                    <p><input className='text-input' 
+                    <input className='text-input' 
                               size={30} 
                               placeholder='Наименование сокращенное*' 
                               value={shortName}
-                              onChange={(e) => setShortName(e.target.value)}></input></p>
+                              onChange={(e) => setShortName(e.target.value)}></input>
                 </div>
                 <div className='mr-16'>
                     <p className='lable'>Дата регистрации*</p>
-                    <p><input type='date'
+                    <input type='date'
                               value={`${dateRegistration?.toISOString()?.split('T')[0]}`}
                               onChange={e => setDateRegistration(e.target.valueAsDate)}
                               className='date-input' 
-                              placeholder='дд.мм.гггг'></input></p>
+                              placeholder='дд.мм.гггг'></input>
                 </div>
             </div>
-            <div className='row'>
+            <div className='row mb-1rem'>
                 <div className='mr-16'>
                     <p className='lable'>ИНН*</p>
-                    <p><input className='text-input' 
+                    <input className='text-input' 
                               size={10} 
                               maxLength={10} 
                               placeholder='хххххххххх' 
                               defaultValue={inn}
-                              onChange={(e) => setINN(e.target.value)}></input></p>
+                              onKeyPress={(event) => {
+                                if (!/[0-9]/.test(event.key)) {
+                                  event.preventDefault();
+                                }
+                              }}
+                              onChange={(e) => setINN(e.target.value)}></input>
                 </div>
                 <div className='mr-16'>
                     <p className='lable'>Скан ИНН*</p>
@@ -98,12 +103,17 @@ const LimitedLiabilityCompany = () => {
                 </div>
                 <div className='mr-16'>
                     <p className='lable'>ОГРН*</p>
-                    <p><input className='text-input' 
+                    <input className='text-input' 
                               size={15} 
                               maxLength={15} 
                               placeholder='ххххххххххххххх'
                               value={ogrn}
-                              onChange={e => setOGRN(e.target.value)}></input></p>
+                              onKeyPress={(event) => {
+                                if (!/[0-9]/.test(event.key)) {
+                                  event.preventDefault();
+                                }
+                              }}
+                              onChange={e => setOGRN(e.target.value)}></input>
                 </div>
                 <div>
                     <p className='lable'>Скан ОГРН*</p>
@@ -125,7 +135,7 @@ const LimitedLiabilityCompany = () => {
                                onChange={setLeaseAgreementOfThePremisesFile}
                                placeholder='Выберите или перетащите файл'></FileInput>
                 </div>
-                <label className='row'>
+                <label className='row mt-1rem'>
                     <input type="checkbox" 
                            onChange={() => {setNoСontract(!noContract); }} />
                     <span className={`checkbox ${noContract ? "checkbox--active" : ""}`} 

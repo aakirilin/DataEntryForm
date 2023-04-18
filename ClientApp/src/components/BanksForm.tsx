@@ -17,6 +17,12 @@ const BanksForm = () =>{
     const setCorrespondentAccount = (index:number, value:string) => dispatch(actionCreators.setCorrespondentAccount(index, value));
     const upload = () => dispatch(actionCreators.upload());
 
+    const ceanFillName = (index:number) => banks[index].BIK?.length === 9;
+    const ceanFillCorrespondentAccount = (index:number) => banks[index].BIK?.length === 9;
+
+    const fillName = (index:number, bik:string) => dispatch(actionCreators.fillName(index, bik)); 
+    const fillCorrespondentAccount = (index:number, bik:string) => dispatch(actionCreators.fillCorrespondentAccount(index, bik));
+
     const ceanNextStep = banks.every(b => 
         (b.BIK?.length === 9) &&
         (b.Name?.length ?? 0 > 1) &&
@@ -29,16 +35,21 @@ const BanksForm = () =>{
             <h3 className='header'>Банковские реквизиты</h3>
             {
                 banks.map((b, i) => <div key={i}>
-                    <div className='row'>
+                    <div className='row mb-1rem'>
                         <div className='mr-16'>
                             <p className='lable'>БИК*</p>
-                            <p><input className='text-input' 
+                            <input className='text-input' 
                                     size={9} 
                                     maxLength={9} 
                                     placeholder='ххххххххх' 
                                     value={b.BIK}
+                                    onKeyPress={(event) => {
+                                        if (!/[0-9]/.test(event.key)) {
+                                          event.preventDefault();
+                                        }
+                                      }}
                                     onChange={(e) => setBIK(i, e.target.value)}>
-                                </input></p>
+                                </input>
                         </div>
                         <div className='mr-16'>
                             <p className='lable'>Название филиала банка*</p>
@@ -47,7 +58,9 @@ const BanksForm = () =>{
                                     placeholder='Название филиала банка*' 
                                     value={b.Name}
                                     onChange={(e) => setName(i, e.target.value)}></input>
-                                <button className='secendary-button'>Заполнить</button>        
+                                <button className='secendary-button'
+                                        onClick={() => fillName(i, b.BIK)}
+                                        disabled={!ceanFillName(i)}>Заполнить</button>        
                             </p>
                         </div>
                         <div className="row">
@@ -58,15 +71,20 @@ const BanksForm = () =>{
                             </div>
                         </div>
                     </div>
-                    <div className='row'>
+                    <div className='row mb-1rem'>
                         <div className='mr-16'>
                             <p className='lable'>Рассчетный счет*</p>
-                            <p><input className='text-input' 
+                            <input className='text-input' 
                                     size={20} 
                                     maxLength={20} 
                                     placeholder='хххххххххххххххххххх' 
                                     value={b.PaymentAccount}
-                                    onChange={(e) => setPaymentAccount(i, e.target.value)}></input></p>
+                                    onKeyPress={(event) => {
+                                        if (!/[0-9]/.test(event.key)) {
+                                          event.preventDefault();
+                                        }
+                                      }}
+                                    onChange={(e) => setPaymentAccount(i, e.target.value)}></input>
                         </div>
                         <div className='mr-16'>
                             <p className='lable'>Корреспондентский счет*</p>
@@ -75,8 +93,15 @@ const BanksForm = () =>{
                                     maxLength={20} 
                                     placeholder='хххххххххххххххххххх' 
                                     value={b.CorrespondentAccount}
+                                    onKeyPress={(event) => {
+                                        if (!/[0-9]/.test(event.key)) {
+                                          event.preventDefault();
+                                        }
+                                      }}
                                     onChange={(e) => setCorrespondentAccount(i, e.target.value)}></input>
-                                 <button className='secendary-button'>Заполнить</button>        
+                                 <button className='secendary-button' 
+                                         onClick={() => fillCorrespondentAccount(i, b.BIK)}
+                                         disabled={!ceanFillCorrespondentAccount(i)}>Заполнить</button>        
                             </p>
                             
                         </div>

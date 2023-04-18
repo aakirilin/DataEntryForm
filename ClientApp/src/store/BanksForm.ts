@@ -32,7 +32,7 @@ const loadFile = async (file:File) => {
 export const actionCreators = {
     addBank: () => ({ type: 'Banks_AddBank' } as AddBank),
     setBIK: (index:number, value:string) : AppThunkAction<any>  => (dispatch, getState) => { 
-        if(value.length === 10){
+        if(value.length === 9){
             axios.post('api/BankSearch', { bik : value }).then(response => {
                 dispatch({  
                     type: 'Banks_SetBankInfo',
@@ -46,7 +46,24 @@ export const actionCreators = {
             dispatch({ type: 'Banks_SetBIK', index:index, value:value });
         } 
     },
-    
+    fillName:(index:number, bik:string) : AppThunkAction<any>  => (dispatch, getState) => { 
+        axios.post('api/BankSearch', { bik : bik }).then(response => {
+            dispatch({  
+                type: 'Banks_SetName',
+                index:index,
+                value:response.data.name,
+             })
+        });
+    },
+    fillCorrespondentAccount:(index:number, bik:string) : AppThunkAction<any>  => (dispatch, getState) => { 
+        axios.post('api/BankSearch', { bik : bik }).then(response => {
+            dispatch({  
+                type: 'Banks_SetCorrespondentAccount',
+                index:index,
+                value:response.data.correspondentAccount,
+             })
+        });
+    },
     setName: (index:number, value:string) => ({ type: 'Banks_SetName', index:index, value:value } as SetName),
     setPaymentAccount: (index:number, value:string) => ({ type: 'Banks_SetPaymentAccount', index:index, value:value } as SetPaymentAccount),
     setCorrespondentAccount: (index:number, value:string) => ({ type: 'Banks_SetCorrespondentAccount', index:index, value:value } as SetCorrespondentAccount),

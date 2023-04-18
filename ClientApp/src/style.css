@@ -18,6 +18,14 @@
     margin-bottom: 40px;
 }
 
+.mb-1rem{
+    margin-bottom: 1rem;
+}
+
+.mt-1rem{
+    margin-top: 1rem;
+}
+
 .header {
     font-family: 'Inter';
     font-style: normal;
@@ -53,6 +61,9 @@
     border: 0px;
 } 
 
+.text-input input:focus{
+    outline:none;
+} 
 
 .select-box {
     border: 1px solid #E4E5E7;

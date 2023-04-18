@@ -16,23 +16,16 @@ namespace DataEntryForm.Controllers
         [HttpPost]
         public async Task<BankSearchResponse> OnPost(BankSearchReqest reqest)
         {
-            HttpClient сlient = new HttpClient();
-            var issueAnInvoiceResponse = await сlient.PostAsJsonAsync(
-                "https://выставить-счет.рф/classifier/bik/",
-                new IssueAnInvoiceReqest() { search=reqest.BIK });
-            var response = await issueAnInvoiceResponse
-                .Content
-                .ReadFromJsonAsync<IssueAnInvoiceResponse>();
-            issueAnInvoiceResponse.Dispose();
-            сlient.Dispose();
+            var banks = System.IO.File.ReadAllText("banks.json");
+            var convertor = System.Text.Json.JsonSerializer.Deserialize<BankFile>(banks);
             
-            var data = response.result.FirstOrDefault();
-            if (data != null)
+            var bank = convertor.banks.FirstOrDefault(b => b.bik == reqest.BIK);
+            if (bank != null)
             {
                 return new BankSearchResponse()
                 {
-                    Name = "",
-                    CorrespondentAccount = ""
+                    Name = bank.name,
+                    CorrespondentAccount = bank.correspondentAccount
                 };
             }
             else

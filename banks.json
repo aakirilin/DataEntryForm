@@ -1,0 +1,29 @@
+{
+    "banks":[
+        {
+            "bik":"111111111",
+            "name":"11",
+            "correspondentAccount":"11111111111111111111"
+        },
+        {
+            "bik":"222222222",
+            "name":"22",
+            "correspondentAccount":"22222222222222222222"
+        },
+        {
+            "bik":"333333333",
+            "name":"33",
+            "correspondentAccount":"33333333333333333333"
+        },
+        {
+            "bik":"444444444",
+            "name":"44",
+            "correspondentAccount":"44444444444444444444"
+        },
+        {
+            "bik":"555555555",
+            "name":"55",
+            "correspondentAccount":"55555555555555555555"
+        }
+    ]
+}
