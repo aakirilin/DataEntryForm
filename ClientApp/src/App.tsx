@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { ApplicationState } from './store';
 import './style.css'
 
-export default () => {
+const App = () => {
 
     const formOfOwnership = useSelector<ApplicationState, string|undefined>(state => state.formOfOwnership?.Form);
     const showBanksForm = useSelector<ApplicationState, boolean|undefined>(state => state.banksForm?.showBanksForm) ?? false;
@@ -24,3 +24,5 @@ export default () => {
         </div>
     )
 };
+
+export default App;

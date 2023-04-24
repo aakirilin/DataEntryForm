@@ -25,7 +25,7 @@ const FormOfOwnership = () => {
                     </svg>
                 </button>
                 <div className='select-box-options' hidden={!showFormsOfOwnership}>
-                    {FormsOfOwnership.map(f =>  <button className='select-box-option' onClick={
+                    {FormsOfOwnership.map((f, i) =>  <button key={i} className='select-box-option' onClick={
                             () => { setFormOfOwnership(f.value); setShowFormsOfOwnership(false);}
                         }>{f.lable}</button>)}
                 </div>
