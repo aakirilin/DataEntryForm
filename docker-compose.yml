@@ -1,0 +1,12 @@
+version: '2.4'
+
+networks:
+  default:
+    driver: bridge
+
+services:
+  dataEntryForm:
+    image: ghcr.io/aakirilin/dataentryform:master
+    container_name: dataEntryForm
+    ports:
+      - "80:80"
