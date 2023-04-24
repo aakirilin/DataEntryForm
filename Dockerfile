@@ -14,7 +14,6 @@ RUN dotnet restore
 COPY ./ ./
 RUN bash -E $(curl -fsSL https://deb.nodesource.com/setup_18.x | bash - ); apt install -y nodejs
 WORKDIR /source
-RUN ls -F
 RUN dotnet publish -c release -o /app --no-restore
 
 # final stage/image
